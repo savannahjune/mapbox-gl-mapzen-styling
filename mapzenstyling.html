@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.7.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.7.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZmx5Ym94IiwiYSI6IkVpM0IyVzgifQ.2Ee0s1LvkkXQglBr7s3DiQ';
+var simple = {
+  "version": 7,
+  "constants": {
+    "@land": "#FCFBE7",
+    "@water": "#C4DFF6",
+    "@grass": "#E6F2C1",
+    "@beach": "#FFEEC7",
+    "@park": "#DAF2C1",
+    "@cemetery": "#D6DED2",
+    "@wooded": "#C3D9AD",
+    "@agriculture": "#F2E8B6",
+    "@building": "#E4E0E0",
+    "@hospital": "rgb(229,198,195)",
+    "@school": "#FFF5CC",
+    "@sports": "#B8E6B8",
+    //"@residential": @land * 0.98;
+    //"@commercial":  @land * 0.97;
+    //"@industrial":  @land * 0.96;
+    "@parking":     "#EEE",
+  },
+  "sources": {
+    "osm": {
+      "type": "vector",
+      "tiles": ["https://vector.mapzen.com/osm/all/{z}/{x}/{y}.mapbox"]
+    }
+  },
+  "layers": [{
+    "id": "background",
+    "type": "background",
+    "paint": {
+      "background-color": "@land"
+    }
+  }, {
+    "id": "water",
+    "type": "fill",
+    "source": "osm",
+    "source-layer": "water",
+    "paint": {
+      "fill-color": "@water"
+    }
+  }]
+};
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: simple,
+  zoom: 1,
+  center: [35, -14]
+});
+
+map.addControl(new mapboxgl.Navigation());
+</script>
+
+</body>
+</html>
