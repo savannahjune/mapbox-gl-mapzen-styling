@@ -31,9 +31,9 @@ var simple = {
     "@hospital": "rgb(229,198,195)",
     "@school": "#FFF5CC",
     "@sports": "#B8E6B8",
-    //"@residential": @land * 0.98;
-    //"@commercial":  @land * 0.97;
-    //"@industrial":  @land * 0.96;
+    "@residential": "#F6F7E1",
+    "@commercial":  "#F3F4DF",
+    "@industrial":  "#F1F2DD",
     "@parking":     "#EEE",
   },
   "sources": {
@@ -73,6 +73,38 @@ var simple = {
       "fill-color": "@park"
     }
   }, {
+    "id":"college",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "college"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@school"
+    }
+  }, {
+    "id":"commercial",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "commercial"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@industrial"
+    }  
+  }, {
     //buildings
     //kind: original value of the OSM building or building:part tag where it is a value other than yes (which is implicit)
     //height: OSM building height tag (usually meters) where available
@@ -81,14 +113,6 @@ var simple = {
     "type": "fill",
     "source": "osm",
     "source-layer": "buildings",
-    // "filter": [
-    //   "all",
-    //     [
-    //       "==", 
-    //       "kind", 
-    //       "building:part"
-    //     ],
-    // ],
     "paint": {
       "fill-color": "@building",
     }
