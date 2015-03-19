@@ -15,7 +15,7 @@
 
 <div id='map'></div>
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoiZmx5Ym94IiwiYSI6IkVpM0IyVzgifQ.2Ee0s1LvkkXQglBr7s3DiQ';
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2F2YW5uYWhqdW5lIiwiYSI6InloMDFoY2MifQ.EccuYKzu5Ff3C0aUwCM57w';
 var simple = {
   "version": 7,
   "constants": {
@@ -56,14 +56,51 @@ var simple = {
     "paint": {
       "fill-color": "@water"
     }
+  }, {
+    "id":"park",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "park"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@park"
+    }
+  }, {
+    //buildings
+    //kind: original value of the OSM building or building:part tag where it is a value other than yes (which is implicit)
+    //height: OSM building height tag (usually meters) where available
+    //min_height: OSM building min_height tag (usually meters) where available
+    "id": "buildings",
+    "type": "fill",
+    "source": "osm",
+    "source-layer": "buildings",
+    // "filter": [
+    //   "all",
+    //     [
+    //       "==", 
+    //       "kind", 
+    //       "building:part"
+    //     ],
+    // ],
+    "paint": {
+      "fill-color": "@building",
+    }
   }]
 };
 
 var map = new mapboxgl.Map({
   container: 'map',
   style: simple,
-  zoom: 1,
-  center: [35, -14]
+  zoom: 13,
+  center: [37.7749300 , -122.4194200
+]
 });
 
 map.addControl(new mapboxgl.Navigation());
