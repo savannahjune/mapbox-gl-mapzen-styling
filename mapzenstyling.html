@@ -26,6 +26,8 @@ var simple = {
     "@park": "#DAF2C1",
     "@cemetery": "#D6DED2",
     "@wooded": "#C3D9AD",
+    "@wooded2": "#E7F2D4",
+    "@nature_reserve": "#D2E8BA",
     "@agriculture": "#F2E8B6",
     "@building": "#E4E0E0",
     "@hospital": "rgb(229,198,195)",
@@ -35,6 +37,42 @@ var simple = {
     "@commercial":  "#F3F4DF",
     "@industrial":  "#F1F2DD",
     "@parking":     "#EEE",
+
+    //Road constants
+    "@motorway_line": "#E65C5C",
+    //"@motorway_fill":     "lighten(@motorway_line,10%)",
+    //"@motorway_case":     "@motorway_line * 0.9",
+
+    "@trunk_line":        "#E68A5C",
+    //"@trunk_fill":        lighten(@trunk_line,10%);
+    //"@trunk_case":        @trunk_line * 0.9;
+
+    "@primary_line":      "#FFC859",
+    //"@primary_fill":      lighten(@primary_line,10%);
+    //"@primary_case":      @primary_line * 0.9;
+
+    "@secondary_line":    "#FFE873",
+    //"@secondary_fill":    lighten(@secondary_line,10%);
+    //"@secondary_case":    @secondary_line * 0.9;
+
+    //"@standard_line":     @land * 0.85;
+    "@standard_fill":     "#fff",
+    //"@standard_case":     @land * 0.9;
+
+    //"@pedestrian_line":   @standard_line;
+    "@pedestrian_fill":   "#FAFAF5",
+    "@pedestrian_case":   "#FCFBE7",
+
+    //"@cycle_line":        @standard_line;
+    "@cycle_fill":        "#FAFAF5",
+    "@cycle_case":        "#FCFBE7",
+
+    "@rail_line":         "#999",
+    "@rail_fill":         "#fff",
+    "@rail_case":         "#FCFBE7",
+
+    "@aeroway":           "#ddd",
+
   },
   "sources": {
     "osm": {
@@ -56,6 +94,7 @@ var simple = {
     "paint": {
       "fill-color": "@water"
     }
+  // military, retail not filled in
   }, {
     "id":"park",
     "type":"fill",
@@ -103,7 +142,344 @@ var simple = {
     ],
     "paint": {
       "fill-color": "@industrial"
-    }  
+    }
+  }, {
+    "id":"forest",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "forest"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@wooded"
+    }
+  }, {
+    "id":"golfcourse",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "golf_course"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@sports"
+    }
+  }, {
+    "id":"grass",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "grass"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@grass"
+    }
+    //Consider changing the zoom level restriction on hospital, red looks jarring
+  }, {
+    "id":"hospital",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "hospital"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@hospital"
+    }
+  }, {
+    "id":"industrial",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "industrial"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@industrial"
+    }
+  }, {
+    "id":"parking",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "parking"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@parking"
+    } 
+  }, {
+    "id":"pedestrian",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "pedestrian"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@pedestrian_fill"
+    }
+  }, {
+    "id":"pitch",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "pitch"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@sports"
+    }
+  }, {
+    "id":"sportscenter",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "sports_center"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@sports"
+    }
+  }, {
+    "id":"stadium",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "stadium"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@sports"
+    }
+  }, {
+    "id":"residential",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "residential"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@residential"
+    }
+  }, {
+    "id":"school",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "school"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@school"
+    }
+  }, {
+    "id":"university",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "university"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@school"
+    }
+  }, {
+    "id":"nature_reserve",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "nature_reserve"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@nature_reserve"
+    }
+  }, {
+    "id":"wood",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "wood"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@wooded2"
+    }
+  }, {
+    "id":"conservation",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "conservation"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@wooded"
+    }
+  }, {
+    "id":"common",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "common"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@park"
+    }
+  }, {
+    "id":"cemetery",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "cemetery"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@cemetery"
+    }
+  }, {
+    "id":"riverbank",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "riverbank"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@beach"
+    }   
+  }, {
+    "id":"water_landuse",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "water"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@water"
+    }
+  }, {
+    "id":"reservoir",
+    "type":"fill",
+    "source": "osm",
+    "source-layer": "landuse",
+    "filter": [
+      "all",
+        [
+          "==", 
+          "kind", 
+          "reservoir"
+        ],
+    ],
+    "paint": {
+      "fill-color": "@water"
+    }      
   }, {
     //buildings
     //kind: original value of the OSM building or building:part tag where it is a value other than yes (which is implicit)
