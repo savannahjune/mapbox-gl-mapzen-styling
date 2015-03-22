@@ -479,7 +479,90 @@ var simple = {
     ],
     "paint": {
       "fill-color": "@water"
+    }
+  }, {
+    "id":"rail",
+    "type":"line",
+    "source": "osm",
+    "source-layer": "roads",
+    "filter": [
+      "all",
+        [
+          "==",
+          "kind",
+          "rail"
+        ],
+    ],
+    "paint": {
+      "line-color":"@rail_line"
+    }
+  }, {
+    "id":"path",
+    "type":"line",
+    "source": "osm",
+    "source-layer": "roads",
+    "filter": [
+      "all",
+        [
+          "==",
+          "kind",
+          "path"
+        ],
+    ],
+    "paint": {
+      "line-color":"@secondary_line"
+    }
+  }, {
+    "id":"minor_road",
+    "type":"line",
+    "source": "osm",
+    "source-layer": "roads",
+    "filter": [
+      "all",
+        [
+          "==",
+          "kind",
+          "minor_road"
+        ],
+    ],
+    "paint": {
+      "line-color":"@primary_line"
+    }
+  }, {
+    "id":"major_road",
+    "type":"line",
+    "source": "osm",
+    "source-layer": "roads",
+    "filter": [
+      "all",
+        [
+          "==",
+          "kind",
+          "major_road"
+        ],
+    ],
+    "paint": {
+      "line-color":"@trunk_line"
     }      
+  }, {
+    // ROAD OPTIONS: is_bridge: yes or no
+    // is_tunnel: yes or no
+    // sort_key: numeric value indicating correct rendering order
+    "id":"highway",
+    "type":"line",
+    "source": "osm",
+    "source-layer": "roads",
+    "filter": [
+      "all",
+        [
+          "==",
+          "kind",
+          "highway"
+        ],
+    ],
+    "paint": {
+      "line-color":"@motorway_line"
+    }
   }, {
     //buildings
     //kind: original value of the OSM building or building:part tag where it is a value other than yes (which is implicit)
