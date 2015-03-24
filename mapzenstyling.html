@@ -526,7 +526,8 @@ var simple = {
         ],
     ],
     "paint": {
-      "line-color":"@primary_line"
+      "line-color":"@primary_line",
+      "line-width": 1,
     }
   }, {
     "id":"major_road",
@@ -542,16 +543,18 @@ var simple = {
         ],
     ],
     "paint": {
-      "line-color":"@trunk_line"
+      "line-color":"@trunk_line",
+      "line-width": 1.5
     }      
   }, {
     // ROAD OPTIONS: is_bridge: yes or no
-    // is_tunnel: yes or no
+    // is_tunnel: yes or no > maybe use this to hide bart
     // sort_key: numeric value indicating correct rendering order
     "id":"highway",
     "type":"line",
     "source": "osm",
     "source-layer": "roads",
+    "minzoom": 9,
     "filter": [
       "all",
         [
@@ -561,7 +564,8 @@ var simple = {
         ],
     ],
     "paint": {
-      "line-color":"@motorway_line"
+      "line-color":"@motorway_line",
+      "line-width": 2,
     }
   }, {
     //buildings
