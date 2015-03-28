@@ -16,9 +16,19 @@
 <div id='map'></div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2F2YW5uYWhqdW5lIiwiYSI6InloMDFoY2MifQ.EccuYKzu5Ff3C0aUwCM57w';
+
+/* ****************************************************************** */
+/* OSM BRIGHT Adaptation using Mapzen Data for Mapbox GL              */
+/* ****************************************************************** */
+
 var simple = {
   "version": 7,
   "constants": {
+
+    /* ================================================================== */
+    /* LANDUSE COLORS
+    /* ================================================================== */
+
     "@land": "#FCFBE7",
     "@water": "#C4DFF6",
     "@grass": "#E6F2C1",
@@ -38,7 +48,10 @@ var simple = {
     "@industrial":  "#F1F2DD",
     "@parking":     "#EEE",
 
-    //Road constants
+    /* ================================================================== */
+    /* ROAD COLORS
+    /* ================================================================== */
+
     "@motorway_line": "#E65C5C",
     //"@motorway_fill":     "lighten(@motorway_line,10%)",
     //"@motorway_case":     "@motorway_line * 0.9",
@@ -73,6 +86,42 @@ var simple = {
 
     "@aeroway":           "#ddd",
 
+    /* ================================================================== */
+    /* LABEL COLORS
+    /* ================================================================== */
+
+    "@citylabel_halo":        "#FAFBE9",
+
+    "@country_text":      "#435",
+
+    "@state_text":        "#546",
+
+    "@city_text":         "#444",
+
+    "@town_text":         "#666",
+
+    "@poi_text":          "#888",
+
+    "@road_text":         "#777",
+    "@road_halo":         "#fff",
+
+    "@other_text":        "#888",
+
+    "@locality_text":     "#aaa",
+    "@locality_halo":     "#FCFBE7",
+
+    /* Also used for other small places: hamlets, suburbs, localities */
+    "@village_text":      "#888",
+
+    /* ================================================================== */
+    /* FONTS
+    /* ================================================================== */
+
+    "@sans_lt":           "Open Sans Regular",
+    "@sans":              "Open Sans Semibold",
+    "@sans_bold":         "Open Sans Bold",
+
+    /* ****************************************************************** */
   },
   "sources": {
     "osm": {
@@ -480,6 +529,9 @@ var simple = {
     "paint": {
       "fill-color": "@water"
     }
+  // ==================================================================
+  //   ROAD & RAIL LINES
+  // ==================================================================
   }, {
     "id":"rail",
     "type":"line",
@@ -568,7 +620,7 @@ var simple = {
       "line-width": 2,
     }
   }, {
-    //buildings
+    // ---- BUILDINGS ----
     //kind: original value of the OSM building or building:part tag where it is a value other than yes (which is implicit)
     //height: OSM building height tag (usually meters) where available
     //min_height: OSM building min_height tag (usually meters) where available
@@ -578,6 +630,27 @@ var simple = {
     "source-layer": "buildings",
     "paint": {
       "fill-color": "@building",
+    }
+  }, {
+    //  Combination of OpenStreetMap place points, and administrative boundary polygons.
+
+    // Layer name: places
+
+    // Properties:
+
+    // name
+    // kind: the original value of the OSM place tag, or boundary for administrative boundaries
+    // admin_level: the original value of the OSM admin_level tag for administrative boundaries
+    "id": "places",
+    "type": "symbol",
+    "source": "osm",
+    "source-layer": "places",
+    "text-field": "{name}",
+    "text-font": "@sans_lt",
+    "text-size": 12,
+    "minzoom": 4,
+    "paint": {
+      "text-color": "@city_text",
     }
   }]
 };
