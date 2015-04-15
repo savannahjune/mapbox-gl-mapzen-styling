@@ -643,8 +643,27 @@ var simple = {
     // admin_level: the original value of the OSM admin_level tag for administrative boundaries
     "id": "places",
     "type": "symbol",
+    //"symbol-placement": "point",
     "source": "osm",
     "source-layer": "places",
+    "text-field": "{name}",
+    "text-font": "@sans_lt",
+    "text-size": 12,
+    "minzoom": 4,
+    "paint": {
+      "text-color": "@city_text",
+    }
+  }, {
+    
+    "id": "pois",
+    "type": "symbol",
+    // "filter": [
+    //   "==",
+    //   "kind",
+    //   "amenity"
+    //   ],
+    "source": "osm",
+    "source-layer": "pois",
     "text-field": "{name}",
     "text-font": "@sans_lt",
     "text-size": 12,
